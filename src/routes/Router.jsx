@@ -8,24 +8,26 @@ import ErrorPage from "../pages/ErrorPage";
 
 const routes = createBrowserRouter([
     {
-        path:'/',
-        element:<Layout></Layout>,
-        errorElement:<ErrorPage></ErrorPage>,
-        children:[
+        path: '/',
+        element: <Layout></Layout>,
+        errorElement: <ErrorPage></ErrorPage>,
+        children: [
             {
-                index:true,
-                element:<Home></Home>,
+                index: true,
+                element: <Home></Home>,
             },
             {
-                path:'/login',
-                element:<Login></Login>
+                path: '/login',
+                element: <Login></Login>
             },
             {
-                path:'/register',
-                element:<Register></Register>
+                path: '/register',
+                element: <Register></Register>
             }
         ]
     }
 ])
 
 export default routes
+
+ 

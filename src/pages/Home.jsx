@@ -1,8 +1,11 @@
+import Banner from "../components/Banner";
+import RecentBlog from "../components/RecentBlog";
 
 const Home = () => {
     return (
         <div>
-            <h1>home</h1>
+            <Banner></Banner>
+            <RecentBlog></RecentBlog>
         </div>
     );
 };

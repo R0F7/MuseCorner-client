@@ -32,7 +32,7 @@ const Navbar = () => {
                         {navItems}
                     </ul>
                 </div>
-                <p className="text-xl">Blog Website</p>
+                <p className="text-xl">MuseCorner</p>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
