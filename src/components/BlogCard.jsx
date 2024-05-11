@@ -1,6 +1,13 @@
+/* eslint-disable react/prop-types */
+
+import { Link } from "react-router-dom";
 
 const BlogCard = ({ blog }) => {
-    const { title, image, short_description, category, createdAt } = blog;
+    const { _id, title, image, short_description, category, createdAt } = blog;
+
+    const dateString  = createdAt;
+    const date = new Date(dateString).toLocaleString();
+    // console.log(date);
 
     return (
         <div>
@@ -14,9 +21,10 @@ const BlogCard = ({ blog }) => {
                     <div className="px-6 py-4">
                         <h1 className="text-xl font-semibold text-gray-800 dark:text-white">{title}</h1>
                         <p className="py-2 text-gray-700 dark:text-gray-400 min-h-[65px] w-[85%]">{short_description}</p>
-                        <div className="flex gap-6 pt-3 pb-2">
+                        <div className="flex gap-4 pt-3 pb-2">
                             <button className="btn btn-sm">Wishlist</button>
-                            <button className="btn btn-sm">Details</button>
+                            <Link to={`/details/${_id}`} className="btn btn-sm">Details</Link>
+                            <p>{date}</p>
                         </div>
                     </div>
             </div>
