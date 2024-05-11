@@ -22,12 +22,12 @@ const AddBlog = () => {
         const blogInfo = {image, title, category, short_description, long_description, createdAt, user_name , user_image, user_email};
 
         axios.post(`${import.meta.env.VITE_API_URL}/blog`,blogInfo)
-        .then(res => {
-            console.log(res.data);
+        .then(() => {
+            // console.log(res.data);
             toast.success('Submit Info Successful')
         })
         .catch(error => {
-            console.log(error);
+            // console.log(error);
             toast.error(error.message)
         })
             

@@ -25,8 +25,8 @@ const AllBlogs = () => {
         // console.log(searchValue);
         axios.get(`${import.meta.env.VITE_API_URL}/search?title=${searchValue}`)
             .then(res => {
-                // setBlogs(res.data)
-                console.log(res.data);
+                setBlogs(res.data)
+                // console.log(res.data);
             })
     }
 
