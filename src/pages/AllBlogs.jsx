@@ -10,7 +10,6 @@ const AllBlogs = () => {
 
     const handleCategories = event => {
         const val = event.target.value;
-        console.log(val);
 
         axios.get(`${import.meta.env.VITE_API_URL}/categories?category=${val}`)
             .then(res => {
@@ -26,7 +25,7 @@ const AllBlogs = () => {
         axios.get(`${import.meta.env.VITE_API_URL}/search?title=${searchValue}`)
             .then(res => {
                 setBlogs(res.data)
-                // console.log(res.data);
+                form.reset()
             })
     }
 
@@ -36,7 +35,7 @@ const AllBlogs = () => {
                 <h4 className="text-4xl">Explore Our Blog Archives</h4>
                 <p className="w-[65%] mx-auto mt-3">Uncover a wealth of knowledge and inspiration! Delve into our extensive blog archives, spanning various categories including travel, lifestyle, wellness, and more. Find something for every interest and passion. Start exploring now</p>
             </div>
-            <div className="flex items-center gap-10 justify-center">
+            <div className="flex items-center gap-6 justify-center">
                 <div className="flex items-center gap-2">
                     <h6> filtered by category:</h6>
                     <div>

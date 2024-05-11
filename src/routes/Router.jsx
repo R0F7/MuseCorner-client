@@ -8,6 +8,7 @@ import ErrorPage from "../pages/ErrorPage";
 import AllBlogs from "../pages/AllBlogs";
 import BlogDetails from "../pages/BlogDetails";
 import AddBlog from "../pages/AddBlog";
+import UpdatePage from "../pages/UpdatePage";
 // import axios from "axios";
 
 const routes = createBrowserRouter([
@@ -39,8 +40,12 @@ const routes = createBrowserRouter([
                 loader: ({ params }) => fetch(`${import.meta.env.VITE_API_URL}/details/${params.id}`)
             },
             {
-                path:"/add-blog",
-                element:<AddBlog></AddBlog>
+                path: "/add-blog",
+                element: <AddBlog></AddBlog>
+            },
+            {
+                path: '/update',
+                element: <UpdatePage></UpdatePage>,
             }
         ]
     }

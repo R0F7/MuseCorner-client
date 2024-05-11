@@ -25,6 +25,7 @@ const AddBlog = () => {
         .then(() => {
             // console.log(res.data);
             toast.success('Submit Info Successful')
+            form.reset()
         })
         .catch(error => {
             // console.log(error);
@@ -32,7 +33,7 @@ const AddBlog = () => {
         })
             
     }
-
+      
     return (
         <div className="flex w-full min-h-[calc(100vh-350px)] items-center my-12">
             <section className="w-[70%] p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
@@ -42,17 +43,17 @@ const AddBlog = () => {
                     <div className="grid grid-cols-1 gap-x-6 gap-y-4 mt-4 sm:grid-cols-6">
                         <div className="col-span-3">
                             <label className="text-gray-700 dark:text-gray-200" htmlFor="username">Image url</label>
-                            <input id="username" type="text" name="photo" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" placeholder="Image url" />
+                            <input id="username" type="text" name="photo" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" placeholder="Image url" required/>
                         </div>
 
                         <div className="col-span-3">
                             <label className="text-gray-700 dark:text-gray-200" htmlFor="emailAddress">Title</label>
-                            <input id="emailAddress" type="text" name="title" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" placeholder="Blog Title" />
+                            <input id="emailAddress" type="text" name="title" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" placeholder="Blog Title" required/>
                         </div>
 
                         <div className="col-span-2">
                             <label className="text-gray-700 dark:text-gray-200" htmlFor="password">category</label>
-                            <select name="category" id="" defaultValue='' className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+                            <select name="category" id="" defaultValue='' className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" required>
                                 <option value="" disabled>Select Category</option>
                                 <option value="Food">Food</option>
                                 <option value="Travel">Travel</option>
@@ -65,12 +66,12 @@ const AddBlog = () => {
 
                         <div className="col-span-4">
                             <label className="text-gray-700 dark:text-gray-200" htmlFor="passwordConfirmation">short description</label>
-                            <input id="passwordConfirmation" type="text" name="short_description" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
+                            <input id="passwordConfirmation" type="text" name="short_description" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" required/>
                         </div>
                     </div>
                     <div className="col-span-6 mt-6">
                         <label className="text-gray-700 dark:text-gray-200" htmlFor="passwordConfirmation">long description</label>
-                        <textarea name="long_description" id="" cols="10" rows="7" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"></textarea>
+                        <textarea name="long_description" id="" cols="10" rows="7" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" required></textarea>
                     </div>
 
                     <div className="flex justify-end mt-6">
