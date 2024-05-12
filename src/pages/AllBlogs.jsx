@@ -52,7 +52,7 @@ const AllBlogs = () => {
                 </div>
                 <div>
                     <form onSubmit={handleSearch}>
-                        <input type="text" name="search"  className="w-[450px]" placeholder="Title"/>
+                        <input type="text" name="search"  className="w-[450px]" placeholder="Search by Title..."/>
                         <input className="bg-[#14456A] py-2.5 text-white px-8" type="submit" value="SEARCH" />
                     </form>
                 </div>

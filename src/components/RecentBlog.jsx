@@ -7,7 +7,7 @@ const RecentBlog = () => {
 
     useEffect(() => {
         axios.get(`${import.meta.env.VITE_API_URL}/blog`,)
-            .then(data => setBlogs(data.data))
+            .then(data => setBlogs(data.data.slice(0,6)))
     }, [])
 
     return (

@@ -13,9 +13,11 @@ const BlogDetails = () => {
     const [count, setCount] = useState(0);
     // const navigate = useNavigate();
 
-    const { _id, title, image, short_description, long_description, category, createdAt, user_image, user_name, user_email } = blog;
+    const { _id, title, image, short_description, long_description, category, createdAt, updatedAt, user_image, user_name, user_email } = blog;
     const dateString = createdAt;
     const date = new Date(dateString).toLocaleString();
+    const updateDateString = updatedAt;
+    const updateDate = new Date(updateDateString).toLocaleString();
 
     useEffect(() => {
         axios.get(`${import.meta.env.VITE_API_URL}/comments/${_id}`)
@@ -91,9 +93,15 @@ const BlogDetails = () => {
                                 <IoIosSend />
                             </button>
                         </form>
-                        : <Link to={`/update/${_id}`} className="bg-[#14456A] text-white w-[492px] h-[40px] flex justify-center items-center text-lg font-bold mt-2.5 rounded-sm hover:bg-white hover:text-[#14456A] hover:border hover:duration-1000">
-                            update
-                        </Link>
+                        :
+                        <div>
+                            {
+                                updatedAt ? <p>last Update: {updateDate}</p> : ''
+                            }
+                            <Link to={`/update/${_id}`} className="bg-[#14456A] text-white w-[492px] h-[40px] flex justify-center items-center text-lg font-bold mt-2.5 rounded-sm hover:bg-white hover:text-[#14456A] hover:border hover:duration-1000">
+                                update
+                            </Link>
+                        </div>
                 }
                 <div className="mt-16">
                     {
