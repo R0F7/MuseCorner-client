@@ -10,6 +10,7 @@ import BlogDetails from "../pages/BlogDetails";
 import AddBlog from "../pages/AddBlog";
 import UpdatePage from "../pages/UpdatePage";
 import FeaturedBlog from "../pages/FeaturedBlog";
+import Wishlist from "../pages/Wishlist";
 // import axios from "axios";
 
 const routes = createBrowserRouter([
@@ -53,6 +54,11 @@ const routes = createBrowserRouter([
                 path: '/featured-blogs',
                 element: <FeaturedBlog></FeaturedBlog>,
                 loader: () => fetch(`${import.meta.env.VITE_API_URL}/blog-sorting`)
+            },
+            {
+                path:'/wishlist',
+                element:<Wishlist></Wishlist>,
+                loader: () => fetch(`${import.meta.env.VITE_API_URL}/all-blogs`),
             }
         ]
     }
