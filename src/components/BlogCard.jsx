@@ -1,28 +1,52 @@
 /* eslint-disable react/prop-types */
-
 import { Link } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { useEffect, useState } from "react";
 
 const BlogCard = ({ blog }) => {
     const { user } = useAuth();
     const { _id, title, image, short_description, category, createdAt } = blog;
     const dateString = createdAt;
     const date = new Date(dateString).toLocaleString();
-    // console.log(date);
+
+    const email = user?.email;
+    const [count, setCount] = useState(0);
+    const [wishlist, setWishlist] = useState([])
+    // console.log(wishlist);
+
+    useEffect(() => {
+        axios.get(`${import.meta.env.VITE_API_URL}/wishlist/${email}`)
+            .then((res) => {
+                setWishlist(res.data)
+                // console.log(res.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    }, [email, count])
 
     const handleWishList = () => {
         const blogId = _id;
         const user_email = user?.email;
         const wishlistInfo = { blogId, user_email }
         // console.log(wishlistInfo);
+
+        const exist = wishlist.find(item => item.blogId === blogId);
+        console.log(exist);
+
+        if (exist) {
+            return toast.error('already added')
+        }
+
         axios.post(`${import.meta.env.VITE_API_URL}/wishlist`, wishlistInfo)
             .then((res) => {
                 // console.log(res.data.insertedId);
-                
+
                 if (res.data.insertedId) {
                     toast.success('Blog added in wishlist successful')
+                    setCount(count + 1)
                 }
             })
             .catch((error) => {
