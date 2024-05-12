@@ -1,4 +1,4 @@
-import { useLoaderData, useNavigate } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { IoIosSend } from "react-icons/io";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -11,7 +11,7 @@ const BlogDetails = () => {
     const { user } = useAuth()
     const [comments, setComments] = useState([]);
     const [count, setCount] = useState(0);
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     const { _id, title, image, short_description, long_description, category, createdAt, user_image, user_name, user_email } = blog;
     const dateString = createdAt;
@@ -53,15 +53,15 @@ const BlogDetails = () => {
             })
     }
 
-    const handleNavigate = () => {
-        navigate('/update')
-    }
+    // const handleNavigate = () => {
+    //     navigate('/update')
+    // }
 
     return (
         <div className="w-[80%] mx-auto my-12">
             <div >
                 <div className="relative ">
-                    <img className="w-full h-64 rounded-lg lg:h-[400px]" src={image} alt="" />
+                    <img className="w-full h-64 rounded-lg lg:h-[420px]" src={image} alt="" />
 
                     <div className="absolute bottom-0 flex p-3 bg-white dark:bg-gray-900 ">
                         <img className="object-cover object-center w-10 h-10 rounded-full" src={user_image} alt="" />
@@ -76,24 +76,24 @@ const BlogDetails = () => {
                     <h1 className="text-xl font-semibold text-gray-800 dark:text-white">{title}</h1>
                     <h1 className="font-semibold text-gray-500 dark:text-white border-l-2 border-[#14456A] pl-3">{category}</h1>
                 </div>
-                <hr className="w-32 my-4 text-blue-500" />
+                <hr className="w-40 my-4 text-blue-500" />
                 <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">{short_description}</p>
                 <p className="text-sm text-gray-500 dark:text-gray-400 indent-8 w-[80%]">{long_description}</p>
             </div>
 
             <div className="mt-10">
-                <h4>comments section</h4>
                 {
                     user?.email !== user_email ?
                         <form onSubmit={handleComment}>
+                            <h4>comments section</h4>
                             <textarea name="comment" id="" cols="60" rows="2" className="block px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" placeholder="write your comment" required></textarea>
                             <button type="submit" className="bg-[#14456A] text-white w-[492px] h-[40px] flex justify-center items-center text-2xl mt-2.5 rounded-sm hover:bg-white hover:text-[#14456A] hover:border hover:duration-1000">
                                 <IoIosSend />
                             </button>
                         </form>
-                        : <button onClick={handleNavigate} className="bg-[#14456A] text-white w-[492px] h-[40px] flex justify-center items-center text-lg font-bold mt-2.5 rounded-sm hover:bg-white hover:text-[#14456A] hover:border hover:duration-1000">
+                        : <Link to={`/update/${_id}`} className="bg-[#14456A] text-white w-[492px] h-[40px] flex justify-center items-center text-lg font-bold mt-2.5 rounded-sm hover:bg-white hover:text-[#14456A] hover:border hover:duration-1000">
                             update
-                        </button>
+                        </Link>
                 }
                 <div className="mt-16">
                     {

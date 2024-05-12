@@ -3,7 +3,6 @@ import useAuth from "../hooks/useAuth";
 import toast from "react-hot-toast";
 
 const AddBlog = () => {
-    // const { _id, title, image, short_description, category, createdAt } = blog;
     const { user } = useAuth();
 
     const handleSubmit = (e) => {
