@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -16,14 +16,16 @@ const BlogCard = ({ blog }) => {
     const [wishlist, setWishlist] = useState([])
     // console.log(wishlist);
 
+    const navigate = useNavigate();
+
     useEffect(() => {
-        axios.get(`${import.meta.env.VITE_API_URL}/wishlist/${email}`)
+        axios.get(`${import.meta.env.VITE_API_URL}/wishlist/${email}`, { withCredentials: true })
             .then((res) => {
                 setWishlist(res.data)
                 // console.log(res.data);
             })
             .catch((err) => {
-                console.log(err);
+                // console.log(err);
             })
     }, [email, count])
 
@@ -34,7 +36,11 @@ const BlogCard = ({ blog }) => {
         // console.log(wishlistInfo);
 
         const exist = wishlist.find(item => item.blogId === blogId);
-        console.log(exist);
+        // console.log(exist);
+
+        if (!user) {
+            return navigate('/login')
+        }
 
         if (exist) {
             return toast.error('already added')

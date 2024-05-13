@@ -6,7 +6,7 @@ import useAuth from "../hooks/useAuth";
 const PrivateRoute = ({ children }) => {
     const { user, loading } = useAuth();
     const location = useLocation();
-    console.log(location);
+    // console.log(location);
 
     if (loading) {
         return <span className="animate-pulse">loading...</span>

@@ -27,7 +27,7 @@ const Login = () => {
         try {
             await signInWithGoogle()
             toast.success('LogIn Successful')
-            navigate('/')
+            navigate(location?.state ? location.state : '/')
         } catch (error) {
             toast.error(error.message)
         }

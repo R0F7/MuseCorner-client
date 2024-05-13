@@ -58,7 +58,7 @@ const routes = createBrowserRouter([
             },
             {
                 path: '/wishlist',
-                element: <Wishlist></Wishlist>,
+                element: <PrivateRoute><Wishlist></Wishlist></PrivateRoute>,
                 loader: () => fetch(`${import.meta.env.VITE_API_URL}/all-blogs`),
             }
         ]
