@@ -9,7 +9,7 @@ const PrivateRoute = ({ children }) => {
     // console.log(location);
 
     if (loading) {
-        return <span className="animate-pulse">loading...</span>
+        return <span className="animate-pulse">loading Private Route...</span>
     }
 
     if (user) {

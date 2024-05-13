@@ -49,7 +49,7 @@ const routes = createBrowserRouter([
             {
                 path: '/update/:id',
                 element: <PrivateRoute><UpdatePage></UpdatePage></PrivateRoute>,
-                loader: ({ params }) => fetch(`${import.meta.env.VITE_API_URL}/details/${params.id}`)
+                loader: ({ params }) => fetch(`${import.meta.env.VITE_API_URL}/update/${params.id}`)
             },
             {
                 path: '/featured-blogs',

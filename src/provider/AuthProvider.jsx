@@ -61,8 +61,8 @@ const AuthProvider = ({ children }) => {
 
       if (currentUser) {
         axios.post(`${import.meta.env.VITE_API_URL}/jwt`, loggedInUser, { withCredentials: true })
-          .then(res => {
-            console.log('token response', res.data);
+          .then(() => {
+            // console.log('token response', res.data);
           })
       }else {
         axios.post(`${import.meta.env.VITE_API_URL}/logout`, loggedInUser, { withCredentials: true })

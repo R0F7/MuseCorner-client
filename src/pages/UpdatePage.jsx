@@ -1,10 +1,33 @@
 import axios from "axios";
 import toast from "react-hot-toast";
-import { useLoaderData } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import useAxiosSecure from "../hooks/useAxiosSecure";
+import useAuth from "../hooks/useAuth";
 
 const UpdatePage = () => {
-    const blog = useLoaderData();
+    const axiosSecure = useAxiosSecure()
+    const [blog, setBlog] = useState({})
     const { _id, title, image, short_description, long_description, category } = blog;
+    const { id } = useParams();
+    const { user } = useAuth();
+    const navigate = useNavigate();
+
+    const email = user?.email;
+
+    useEffect(() => {
+        // axiosSecure.get(`/update/${id}`)
+        axiosSecure.get(`/update?email=${email}&&id=${id}`)
+            .then((res) => {
+                if (!res.data) {
+                    return navigate('/')
+                }
+                setBlog(res.data)
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    }, [axiosSecure, id, email,navigate])
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -25,7 +48,7 @@ const UpdatePage = () => {
             .then((res) => {
                 // console.log(res.data.modifiedCount);
                 if (res.data.modifiedCount) {
-                    toast.success('Submit Info Successful')
+                    toast.success('Update Info Successful')
                     // location.reload(true)
                 }
             })

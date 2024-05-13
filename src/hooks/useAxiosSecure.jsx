@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 const axiosSecure = axios.create({
-    baseURL: 'http://localhost:5000',
+    baseURL: import.meta.env.VITE_API_URL,
     withCredentials: true,
 })
 
@@ -13,7 +13,7 @@ const useAxiosSecure = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axiosSecure.interceptors.response.use(res => {
+        axiosSecure.interceptors.response.use((res) => {
             return res;
         }, error => {
             if (error.response.status === 401 || error.response.status === 403) {
@@ -24,7 +24,7 @@ const useAxiosSecure = () => {
                     .catch(error => console.log(error))
             }
         })
-    }, [])
+    }, [logOut, navigate])
 
     return axiosSecure;
 };

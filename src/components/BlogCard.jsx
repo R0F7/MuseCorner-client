@@ -4,6 +4,7 @@ import useAuth from "../hooks/useAuth";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useEffect, useState } from "react";
+// import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const BlogCard = ({ blog }) => {
     const { user } = useAuth();
@@ -17,16 +18,23 @@ const BlogCard = ({ blog }) => {
     // console.log(wishlist);
 
     const navigate = useNavigate();
+    // const axiosSecure = useAxiosSecure()
 
     useEffect(() => {
+        if (!email) {
+           return email 
+        }
         axios.get(`${import.meta.env.VITE_API_URL}/wishlist/${email}`, { withCredentials: true })
-            .then((res) => {
-                setWishlist(res.data)
-                // console.log(res.data);
-            })
-            .catch((err) => {
-                // console.log(err);
-            })
+        // axiosSecure.get(`/wishlist/${email}`)
+        .then((res) => {
+            setWishlist(res.data)
+            // console.log(res.data);
+            // console.log(email)
+        })
+        .catch((err) => {
+            console.log(err);
+            // console.log(email)
+        })
     }, [email, count])
 
     const handleWishList = () => {
