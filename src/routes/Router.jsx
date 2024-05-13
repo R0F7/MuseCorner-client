@@ -11,6 +11,7 @@ import AddBlog from "../pages/AddBlog";
 import UpdatePage from "../pages/UpdatePage";
 import FeaturedBlog from "../pages/FeaturedBlog";
 import Wishlist from "../pages/Wishlist";
+import PrivateRoute from "./PrivateRoute";
 // import axios from "axios";
 
 const routes = createBrowserRouter([
@@ -47,7 +48,7 @@ const routes = createBrowserRouter([
             },
             {
                 path: '/update/:id',
-                element: <UpdatePage></UpdatePage>,
+                element: <PrivateRoute><UpdatePage></UpdatePage></PrivateRoute>,
                 loader: ({ params }) => fetch(`${import.meta.env.VITE_API_URL}/details/${params.id}`)
             },
             {
@@ -56,8 +57,8 @@ const routes = createBrowserRouter([
                 loader: () => fetch(`${import.meta.env.VITE_API_URL}/blog-sorting`)
             },
             {
-                path:'/wishlist',
-                element:<Wishlist></Wishlist>,
+                path: '/wishlist',
+                element: <Wishlist></Wishlist>,
                 loader: () => fetch(`${import.meta.env.VITE_API_URL}/all-blogs`),
             }
         ]

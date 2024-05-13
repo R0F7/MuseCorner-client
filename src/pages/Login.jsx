@@ -1,10 +1,11 @@
 import toast from "react-hot-toast";
 import useAuth from "../hooks/useAuth";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Login = () => {
     const { signIn, signInWithGoogle } = useAuth();
     const navigate = useNavigate();
+    const location = useLocation();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -16,7 +17,7 @@ const Login = () => {
         try {
             await signIn(email, password)
             toast.success('Login Successful')
-            navigate('/')
+            navigate(location?.state ? location.state : '/')
         } catch (error) {
             toast.error(error.message)
         }

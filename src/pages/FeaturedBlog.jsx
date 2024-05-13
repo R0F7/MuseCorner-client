@@ -1,5 +1,5 @@
 import { createColumnHelper, getCoreRowModel, useReactTable, flexRender } from "@tanstack/react-table";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 
 const FeaturedBlog = () => {
@@ -34,8 +34,19 @@ const FeaturedBlog = () => {
         }),
     ]
 
-    const [data] = useState(() => [...USERS.slice(0,10)])
-    data.sort((a,b) => b.long_description.length - a.long_description.length);
+    // () => [...USERS]
+    // const [data , setData] = useState(USERS)
+    // const sorting_data = data.sort((a,b) => b.long_description.length - a.long_description.length);
+    // setData(sorting_data.slice(0,10));
+
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        const copiedData = [...USERS];
+        const sortedData = copiedData.sort((a, b) => b.long_description.length - a.long_description.length);
+        setData(sortedData.slice(0, 10));
+    }, [USERS]);
+
 
     const table = useReactTable({
         data,

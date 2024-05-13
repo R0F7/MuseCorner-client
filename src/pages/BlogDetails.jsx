@@ -95,6 +95,7 @@ const BlogDetails = () => {
                         </form>
                         :
                         <div>
+                            <h4>Can not comment on own blog</h4>
                             {
                                 updatedAt ? <p>last Update: {updateDate}</p> : ''
                             }
