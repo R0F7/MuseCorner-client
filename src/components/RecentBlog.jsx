@@ -12,7 +12,7 @@ const RecentBlog = () => {
 
     return (
         <div >
-            <div className="text-center mt-10">
+            <div className="text-center mt-10" id="recent-blog">
                 <h4 className="text-4xl">Dive into Our Newest Blog Posts</h4>
                 <p className="w-[65%] mx-auto mt-3">Stay up-to-date with our latest adventures! Explore diverse destinations, discover hidden gems, and get insider tips for your next journey. Start reading now for travel inspiration!</p>
             </div>

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
 import { Tooltip } from 'flowbite-react';
 
@@ -6,11 +6,11 @@ const Navbar = () => {
     const { user, logOut } = useAuth();
 
     const navItems = <>
-        <li><Link to='/'>Home</Link></li>
-        <li><Link to='/add-blog'>Add Blog</Link></li>
-        <li><Link to='/all-blogs'>All blogs</Link></li>
-        <li><Link to='/featured-blogs'>Featured Blogs</Link></li>
-        <li><Link to='/wishlist'>Wishlist</Link></li>
+        <li><NavLink to='/' className={({ isActive }) => isActive ? 'border border-[#14456A] border-y-0 bg-transparent py-1.5 px-3 text-[#14456A] font-semibold rounded-lg' : 'text-[rgba(20,69,106,.8)] font-medium'}>Home</NavLink></li>
+        <li><NavLink to='/add-blog' className={({ isActive }) => isActive ? 'border border-[#14456A] border-y-0 bg-transparent py-1.5 px-3 text-[#14456A] font-semibold rounded-lg' : 'text-[rgba(20,69,106,.8)] font-medium'}>Add Blog</NavLink></li>
+        <li><NavLink to='/all-blogs' className={({ isActive }) => isActive ? 'border border-[#14456A] border-y-0 bg-transparent py-1.5 px-3 text-[#14456A] font-semibold rounded-lg' : 'text-[rgba(20,69,106,.8)] font-medium'}>All blogs</NavLink></li>
+        <li><NavLink to='/featured-blogs' className={({ isActive }) => isActive ? 'border border-[#14456A] border-y-0 bg-transparent py-1.5 px-3 text-[#14456A] font-semibold rounded-lg' : 'text-[rgba(20,69,106,.8)] font-medium'}>Featured Blogs</NavLink></li>
+        <li><NavLink to='/wishlist' className={({ isActive }) => isActive ? 'border border-[#14456A] border-y-0 bg-transparent py-1.5 px-3 text-[#14456A] font-semibold rounded-lg' : 'text-[rgba(20,69,106,.8)] font-medium'}>Wishlist</NavLink></li>
     </>
 
     const handleLogOut = async () => {
@@ -32,10 +32,10 @@ const Navbar = () => {
                         {navItems}
                     </ul>
                 </div>
-                <p className="text-xl">MuseCorner</p>
+                <p className="text-xl font-bold text-[rgb(20,69,106)]">MuseCorner</p>
             </div>
             <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal px-1">
+                <ul className="flex space-x-6 px-1">
                     {navItems}
                 </ul>
             </div>
