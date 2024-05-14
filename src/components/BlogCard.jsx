@@ -4,6 +4,7 @@ import useAuth from "../hooks/useAuth";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 // import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const BlogCard = ({ blog }) => {
@@ -20,22 +21,43 @@ const BlogCard = ({ blog }) => {
     const navigate = useNavigate();
     // const axiosSecure = useAxiosSecure()
 
-    useEffect(() => {
-        if (!email) {
-           return email 
+    // useEffect(() => {
+    //     if (!email) {
+    //        return email 
+    //     }
+    //     axios.get(`${import.meta.env.VITE_API_URL}/wishlist/${email}`, { withCredentials: true })
+    //     // axiosSecure.get(`/wishlist/${email}`)
+    //     .then((res) => {
+    //         setWishlist(res.data)
+    //     })
+    //     .catch((err) => {
+    //         console.log(err);
+    //     })
+    // }, [email, count])
+
+    const { isPending, isError, error, refetch, data } = useQuery({
+        queryKey: ['wishlistCheck'],
+        queryFn: async () => {
+            if (!email) {
+                return []
+            }
+            const res = await axios(`${import.meta.env.VITE_API_URL}/wishlist/${email}`, { withCredentials: true });
+            return res.data;
         }
-        axios.get(`${import.meta.env.VITE_API_URL}/wishlist/${email}`, { withCredentials: true })
-        // axiosSecure.get(`/wishlist/${email}`)
-        .then((res) => {
-            setWishlist(res.data)
-            // console.log(res.data);
-            // console.log(email)
-        })
-        .catch((err) => {
-            console.log(err);
-            // console.log(email)
-        })
-    }, [email, count])
+    })
+
+    useEffect(() => {
+        refetch();
+        setWishlist(data)
+    }, [refetch, count, data]);
+
+    if (isPending) {
+        return <h3>pending</h3>
+    }
+
+    if (isError) {
+        return <span>{error.message}</span>
+    }
 
     const handleWishList = () => {
         const blogId = _id;

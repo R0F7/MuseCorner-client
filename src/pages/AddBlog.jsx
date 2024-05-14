@@ -1,9 +1,11 @@
-import axios from "axios";
+// import axios from "axios";
 import useAuth from "../hooks/useAuth";
 import toast from "react-hot-toast";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const AddBlog = () => {
     const { user } = useAuth();
+    const axiosSecure = useAxiosSecure()
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -20,7 +22,7 @@ const AddBlog = () => {
         const user_email = user?.email;
         const blogInfo = {image, title, category, short_description, long_description, createdAt, user_name , user_image, user_email};
 
-        axios.post(`${import.meta.env.VITE_API_URL}/blog`,blogInfo)
+        axiosSecure.post(`/blog`,blogInfo)
         .then(() => {
             // console.log(res.data);
             toast.success('Submit Info Successful')

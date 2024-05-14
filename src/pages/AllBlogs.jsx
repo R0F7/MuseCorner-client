@@ -1,11 +1,26 @@
 import { useLoaderData } from "react-router-dom";
 import BlogCard from "../components/BlogCard";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 
 const AllBlogs = () => {
-    const allBlogs = useLoaderData();
-    const [blogs, setBlogs] = useState(allBlogs)
+    // const allBlogs = useLoaderData();
+    const { isPending, isError, error, refetch, data = [] } = useQuery({
+        queryKey: ['AllBlogs'],
+        queryFn: async () => {
+            const res = await axios(`${import.meta.env.VITE_API_URL}/all-blogs`);
+            return res.data;
+        }
+    })
+
+    useEffect(() => {
+        refetch();
+        setBlogs(data)
+    }, [refetch, data]);
+
+
+    const [blogs, setBlogs] = useState(data)
     // console.log(blogs);
 
     const handleCategories = event => {
@@ -27,6 +42,14 @@ const AllBlogs = () => {
                 setBlogs(res.data)
                 form.reset()
             })
+    }
+
+    if (isPending) {
+        return <h3>pending</h3>
+    }
+
+    if (isError) {
+        return <span>{error.message}</span>
     }
 
     return (
@@ -52,7 +75,7 @@ const AllBlogs = () => {
                 </div>
                 <div>
                     <form onSubmit={handleSearch}>
-                        <input type="text" name="search"  className="w-[450px]" placeholder="Search by Title..."/>
+                        <input type="text" name="search" className="w-[450px]" placeholder="Search by Title..." />
                         <input className="bg-[#14456A] py-2.5 text-white px-8" type="submit" value="SEARCH" />
                     </form>
                 </div>

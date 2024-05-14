@@ -1,17 +1,28 @@
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { IoIosSend } from "react-icons/io";
 import axios from "axios";
 import toast from "react-hot-toast";
 import useAuth from "../hooks/useAuth";
 import { useEffect, useState } from "react";
 import Comment from "../components/Comment";
+// import useAxiosSecure from "../hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
 
 const BlogDetails = () => {
-    const blog = useLoaderData();
+    // const blog = useLoaderData();
+
+    const {id} = useParams()
     const { user } = useAuth()
-    const [comments, setComments] = useState([]);
+    // const [comments, setComments] = useState([]);
     const [count, setCount] = useState(0);
-    // const navigate = useNavigate();
+
+    const { isPending1, isError1, error1, refetch1, data: blog = {} } = useQuery({
+        queryKey: ['detailsBlog'],
+        queryFn: async () => {
+            const res = await axios(`${import.meta.env.VITE_API_URL}/details/${id}`);
+            return res.data;
+        },
+    })
 
     const { _id, title, image, short_description, long_description, category, createdAt, updatedAt, user_image, user_name, user_email } = blog;
     const dateString = createdAt;
@@ -19,16 +30,46 @@ const BlogDetails = () => {
     const updateDateString = updatedAt;
     const updateDate = new Date(updateDateString).toLocaleString();
 
+    // useEffect(() => {
+    //     axios.get(`${import.meta.env.VITE_API_URL}/comments/${_id}`)
+    //         .then((res) => {
+    //             // console.log(res.data);
+    //             setComments(res.data)
+    //         })
+    //         .catch((error) => {
+    //             console.log(error);
+    //         })
+    // }, [_id, count])
+
+    // const axiosSecure = useAxiosSecure()
+
+    const { isPending, isError, error, refetch, data: comments } = useQuery({
+        queryKey: ['comments'],
+        queryFn: async () => {
+            const res = await axios(`${import.meta.env.VITE_API_URL}/comments/${_id}`);
+            return res.data;
+        },
+        retry:10
+    })
+
     useEffect(() => {
-        axios.get(`${import.meta.env.VITE_API_URL}/comments/${_id}`)
-            .then((res) => {
-                // console.log(res.data);
-                setComments(res.data)
-            })
-            .catch((error) => {
-                console.log(error);
-            })
-    }, [_id, count])
+        refetch(); 
+    }, [refetch, count, blog]);
+
+    if (isPending) {
+        return <h3>pending</h3>
+    }
+
+    if (isError) {
+        return <span>{error.message}</span>
+    }
+    if (isPending1) {
+        return <h3>pending</h3>
+    }
+
+    if (isError1) {
+        return <span>{error1.message}</span>
+    }
 
     const handleComment = (e) => {
         e.preventDefault()
@@ -54,10 +95,6 @@ const BlogDetails = () => {
                 console.log(error);
             })
     }
-
-    // const handleNavigate = () => {
-    //     navigate('/update')
-    // }
 
     return (
         <div className="w-[80%] mx-auto my-12">

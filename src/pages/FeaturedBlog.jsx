@@ -1,10 +1,19 @@
+import { useQuery } from "@tanstack/react-query";
 import { createColumnHelper, getCoreRowModel, useReactTable, flexRender } from "@tanstack/react-table";
+import axios from "axios";
 import { useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+// import { useLoaderData } from "react-router-dom";
 
 const FeaturedBlog = () => {
-    const USERS = useLoaderData();
+    // const USERS = useLoaderData();
     // console.log(USERS);
+    const { isPending, isError, error, data: USERS = [] } = useQuery({
+        queryKey: ['FeaturedBlog'],
+        queryFn: async () => {
+            const res = await axios(`${import.meta.env.VITE_API_URL}/blog-sorting`);
+            return res.data;
+        },
+    })
 
     const columnHelper = createColumnHelper()
 
@@ -53,6 +62,14 @@ const FeaturedBlog = () => {
         columns,
         getCoreRowModel: getCoreRowModel()
     })
+
+    if (isPending) {
+        return <h3>pending</h3>
+    }
+
+    if (isError) {
+        return <span>{error.message}</span>
+    }
 
     return (
         <div className='pt-4 min-h-[100vh-350px] bg-gra-900 my-12'>

@@ -1,14 +1,33 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+// import axios from "axios";
+// import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import BlogCard from "./BlogCard";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const RecentBlog = () => {
-    const [blogs, setBlogs] = useState([])
+    // const [blogs, setBlogs] = useState([])
 
-    useEffect(() => {
-        axios.get(`${import.meta.env.VITE_API_URL}/blog`,)
-            .then(data => setBlogs(data.data.slice(0,6)))
-    }, [])
+    // useEffect(() => {
+    //     axios.get(`${import.meta.env.VITE_API_URL}/blog`,)
+    //         .then(data => setBlogs(data.data.slice(0,6)))
+    // }, [])
+
+    const axiosSecure = useAxiosSecure()
+    const { isPending, isError, error, data: blogs } = useQuery({
+        queryKey: ['recentBlog'],
+        queryFn: async () => {
+            const res = await axiosSecure(`/blog`);
+            return res.data;
+        }
+    })
+
+    if (isPending) {
+        return <h3>pending</h3>
+    }
+
+    if (isError) {
+        return <span>{error.message}</span>
+    }
 
     return (
         <div >
@@ -18,7 +37,7 @@ const RecentBlog = () => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
                 {
-                    blogs.map(blog => <BlogCard key={blog._id} blog={blog}></BlogCard>)
+                    blogs?.slice(0, 6).map(blog => <BlogCard key={blog._id} blog={blog}></BlogCard>)
                 }
             </div>
         </div>
