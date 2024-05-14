@@ -15,8 +15,7 @@ const Banner = () => {
                     <p className="mt-4 text-sm text-gray-500 dark:text-gray-400 lg:text-base ">Welcome to MuseCorner, where inspiration knows no bounds. Discover captivating narratives across Travel, Food, Art, Technology, Self-Improvement, and Health. Join us on a journey of exploration, learning, and inspiration.</p>
 
                     <div className="flex flex-col mt-6 space-y-3 lg:space-y-0 lg:flex-row">
-                        {/* <a href="#recent-blog" className="block px-5 py-2 text-sm font-medium tracking-wider text-center text-white transition-colors duration-300 transform bg-gray-900 rounded-md hover:bg-gray-700">Read Our Latest Stories</a>
-                    <a href="#" className="block px-5 py-2 text-sm font-medium tracking-wider text-center text-gray-700 transition-colors duration-300 transform bg-gray-200 rounded-md lg:mx-4 hover:bg-gray-300">Learn More</a> */}
+                        
                         <div className="flex items-center bg-gray-100 w-[490px] justify-between px-3 py-3 rounded-full shadow-lg">
                             <div className=" ml-6">
                                 <h6 className="text-sm">Your email address</h6>

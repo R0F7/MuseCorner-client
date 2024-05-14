@@ -1,11 +1,15 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import toast from "react-hot-toast";
+import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
+import { useState } from "react";
+
 
 const Register = () => {
     const navigate = useNavigate();
     const { user, setUser, createUser, updateUserProfile } = useAuth();
     const location = useLocation();
+    const [toggle, setToggle] = useState(false);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -34,7 +38,7 @@ const Register = () => {
             navigate(location?.state ? location.state : '/')
         } catch (error) {
             console.log(error);
-            toast.error(error?.message)
+            toast.error(error.message.split('/')[1].replace(').', ''))
         }
     }
 
@@ -43,19 +47,6 @@ const Register = () => {
             <section className="bg-white dark:bg-gray-900">
                 <div className="container flex items-center justify-center min-h-[calc(100vh-350px)] px-6 mx-auto">
                     <form onSubmit={handleSubmit} className="w-full max-w-md">
-                        <div className="flex justify-center mx-auto hidden">
-                            <img className="w-auto h-7 sm:h-8" src="https://merakiui.com/images/logo.svg" alt="" />
-                        </div>
-
-                        <div className="flex items-center justify-center mt-6 hidden">
-                            <a href="#" className="w-1/3 pb-4 font-medium text-center text-gray-500 capitalize border-b dark:border-gray-400 dark:text-gray-300">
-                                sign in
-                            </a>
-
-                            <a href="#" className="w-1/3 pb-4 font-medium text-center text-gray-800 capitalize border-b-2 border-blue-500 dark:border-blue-400 dark:text-white">
-                                sign up
-                            </a>
-                        </div>
 
                         <div className="relative flex items-center mt-8">
                             <span className="absolute">
@@ -64,7 +55,7 @@ const Register = () => {
                                 </svg>
                             </span>
 
-                            <input type="text" name="name" className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Username" />
+                            <input type="text" name="name" className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Username" required/>
                         </div>
 
                         <div className="relative flex items-center mt-8">
@@ -74,7 +65,7 @@ const Register = () => {
                                 </svg>
                             </span>
 
-                            <input type="text" name="photo" className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Profile Photo" />
+                            <input type="text" name="photo" className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Profile Photo" required/>
                         </div>
 
                         <div className="relative flex items-center mt-6">
@@ -84,7 +75,7 @@ const Register = () => {
                                 </svg>
                             </span>
 
-                            <input type="email" name="email" className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Email address" />
+                            <input type="email" name="email" className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Email address" required/>
                         </div>
 
                         <div className="relative flex items-center mt-4">
@@ -94,27 +85,19 @@ const Register = () => {
                                 </svg>
                             </span>
 
-                            <input type="password" name="password" className="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Password" />
-                        </div>
+                            <input type={toggle ? 'text' : 'password'} name="password" id="password" placeholder="Password" className="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" required />
+                            <span onClick={() => setToggle(!toggle)} className="text-xl absolute right-4 top-4">{toggle ? <IoEyeOutline /> : <IoEyeOffOutline />}</span>
 
-                        <div className="relative flex items-center mt-4 hidden">
-                            <span className="absolute">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                                </svg>
-                            </span>
-
-                            <input type="password" className="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Confirm Password" />
                         </div>
 
                         <div className="mt-6">
-                            <button className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+                            <button className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-[#14456A] rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
                                 Register
                             </button>
 
                             <div className="mt-6 text-center ">
-                                <Link to='/login' className="text-sm text-blue-500 hover:underline dark:text-blue-400">
-                                    Already have an account?
+                                <Link to='/login' className="text-sm text-[#14456A] hover:underline dark:text-blue-400">
+                                    Already have an account?Login
                                 </Link>
                             </div>
                         </div>

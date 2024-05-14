@@ -39,7 +39,7 @@ const Navbar = () => {
                     {navItems}
                 </ul>
             </div>
-            <div className="navbar-end">
+            <div className="navbar-end mr-4 md:mr-0">
                 {user && <div tabIndex={0} role="button" className="avatar space-x-2">
                     <div className="w-12 rounded-full">
                         <Tooltip className='text-nowrap' content={user?.displayName} placement="bottom" animation='duration-1000'>
@@ -49,8 +49,8 @@ const Navbar = () => {
                     <button className='btn' onClick={handleLogOut}>Logout</button>
                 </div>}
                 {!user && <div className='space-x-2'>
-                    <Link to='/login' className="btn">Login</Link>
-                    <Link to='/register' className="btn">Register</Link>
+                    <Link to='/login' className="btn text-[#14456A] bg-transparent hover:bg-[#14456A] duration-1000 hover:text-white">Login</Link>
+                    <Link to='/register' className="btn bg-[#14456A] text-white hover:bg-transparent duration-1000 hover:text-[#14456A]">Register</Link>
                 </div>}
             </div>
         </div>

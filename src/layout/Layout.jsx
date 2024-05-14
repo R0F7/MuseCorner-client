@@ -12,7 +12,7 @@ const Layout = () => {
                 {/* <Header></Header> */}
             </div>
             {/* Outlet */}
-            <div className='container mx-auto min-h-[calc(100vh-350px)]'>
+            <div className='container px-5 md:mx-auto min-h-[calc(100vh-350px)]'>
                 <Outlet></Outlet>
             </div>
             <div className=''>
