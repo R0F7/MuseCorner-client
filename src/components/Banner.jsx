@@ -9,8 +9,8 @@ const Banner = () => {
         <div className="lg:flex mt-5 mb-14">
             <div className="flex items-center md:justify-center w-full md:px-6  md:pt-8 lg:py-8 lg:h-[32rem] lg:w-1/2 relative">
                 <div className="max-w-xl">
-                    <div className="w-12 h-3 bg-[#14456A] mb-2"></div>
-                    <h2 className="text-3xl font-semibold text-gray-800 dark:text-white lg:text-4xl lg:w-[80%]">Explore the World Through <span className="text-[#14456A] dark:text-blue-400">Our Lens</span></h2>
+                    <div className="w-12 h-2.5 bg-[#14456A] mb-2"></div>
+                    <h2 className="text-3xl font-semibold text-[#14456A] dark:text-white lg:text-4xl lg:w-[80%]">Explore the World Through <span className="dark:text-blue-400">Our Lens</span></h2>
 
                     <p className="mt-4 text-sm text-gray-500 dark:text-gray-400 lg:text-base ">Welcome to MuseCorner, where inspiration knows no bounds. Discover captivating narratives across Travel, Food, Art, Technology, Self-Improvement, and Health. Join us on a journey of exploration, learning, and inspiration.</p>
 
