@@ -1,6 +1,6 @@
 import useAuth from "../hooks/useAuth";
 // import CBD from '../assets/circular-background-dots-image_347235-removebg-preview.png'
-import svg from '../assets/vecteezy_studying-and-learning-online-concept_1270244.svg'
+import svg from '../../public/image/vecteezy_studying-and-learning-online-concept_1270244.svg'
 
 const Banner = () => {
     const { user } = useAuth();

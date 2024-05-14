@@ -96,16 +96,16 @@ const BlogCard = ({ blog }) => {
                 <img className="object-cover object-center w-full h-56" src={image} alt="avatar" />
 
                 <div className="flex items-center px-6 py-3 bg-gray-900">
-                    <h1 className="mx-3 text-lg font-semibold text-white">{category}</h1>
+                    <h1 className="md:mx-3 text-lg font-semibold text-white">{category}</h1>
                 </div>
 
                 <div className="px-6 py-4">
                     <h1 className="text-xl font-semibold text-gray-800 dark:text-white">{title}</h1>
-                    <p className="py-2 text-gray-700 dark:text-gray-400 min-h-[65px] w-[85%]">{short_description}</p>
+                    <p className="py-2 text-gray-700 dark:text-gray-400 min-h-[100px] md:min-h-[65px]">{short_description}</p>
                     <div className="flex gap-4 pt-3 pb-2">
                         <button onClick={handleWishList} className="btn btn-sm">Wishlist</button>
                         <Link to={`/details/${_id}`} className="btn btn-sm">Details</Link>
-                        <p>{date}</p>
+                        {/* <p>{date}</p> */}
                     </div>
                 </div>
             </div>

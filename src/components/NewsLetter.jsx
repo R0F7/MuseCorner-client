@@ -21,13 +21,13 @@ const NewsLetter = () => {
     }
 
     return (
-        <div className="py-20 flex flex-col-reverse lg:flex-row items-center my-10 gap-16 lg:gap-0">
+        <div className="py-10 lg:py-20 flex flex-col-reverse lg:flex-row items-center lg:my-10 gap-12 lg:gap-0">
             <div className=''>
-                <h4 className="text-3xl font-bold text-[#14456A] ">Subscribe to our newsletter</h4>
-                <p className="text-[#79848F] w-[80%] mt-1.5 mb-8">Never miss a beat! Sign up for our newsletter to receive the latest blog updates, exclusive content, and insider insights delivered directly to your inbox. Stay informed and inspired – subscribe now!</p>
+                <h4 className="text-2xl md:text-3xl font-bold text-[#14456A] ">Subscribe to our newsletter</h4>
+                <p className="text-[#79848F] md:w-[80%] mt-1.5 mb-8">Never miss a beat! Sign up for our newsletter to receive the latest blog updates, exclusive content, and insider insights delivered directly to your inbox. Stay informed and inspired – subscribe now!</p>
                 <form onSubmit={handleNewsletter}>
-                    <input type="email" name="email" id="" className="rounded-l-sm py-[10px] w-[300px] border-2" placeholder="Email@" required />
-                    <input className="bg-[#14456A] text-white h-12 px-6 font-bold" type="submit" value="SUBSCRIBE" />
+                    <input type="email" name="email" id="" className="rounded-l-sm py-[10px] w-[240px] md:w-[300px] border-2 focus:ring-[#14456A] focus:border-0 focus:outline-none focus:ring focus:ring-opacity-70" placeholder="Email@" required />
+                    <input className="bg-[#14456A] text-white text-sm md:text-base h-12 px-4 md:px-6 font-bold" type="submit" value="SUBSCRIBE" />
                 </form>
                 <p className="text-[#6D7D92] mt-1.5">You can unsubscribe at any time.</p>
             </div>

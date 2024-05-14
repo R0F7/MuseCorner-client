@@ -32,10 +32,10 @@ const RecentBlog = () => {
     return (
         <div >
             <div className="text-center mt-10" id="recent-blog">
-                <h4 className="text-4xl">Dive into Our Newest Blog Posts</h4>
-                <p className="w-[65%] mx-auto mt-3">Stay up-to-date with our latest adventures! Explore diverse destinations, discover hidden gems, and get insider tips for your next journey. Start reading now for travel inspiration!</p>
+                <h4 className="text-2xl font-semibold md:text-4xl">Dive into Our Newest Blog Posts</h4>
+                <p className="lg:w-[65%] mx-auto mt-3">Stay up-to-date with our latest adventures! Explore diverse destinations, discover hidden gems, and get insider tips for your next journey. Start reading now for travel inspiration!</p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
+            <div className="grid grid-cols-1 md:grid-cols- lg:grid-cols-3 gap-6 mt-10">
                 {
                     blogs?.slice(0, 6).map(blog => <BlogCard key={blog._id} blog={blog}></BlogCard>)
                 }
