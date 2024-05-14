@@ -21,7 +21,7 @@ const NewsLetter = () => {
     }
 
     return (
-        <div className="py-20 flex items-center my-10">
+        <div className="py-20 flex flex-col-reverse lg:flex-row items-center my-10 gap-16 lg:gap-0">
             <div className=''>
                 <h4 className="text-3xl font-bold text-[#14456A] ">Subscribe to our newsletter</h4>
                 <p className="text-[#79848F] w-[80%] mt-1.5 mb-8">Never miss a beat! Sign up for our newsletter to receive the latest blog updates, exclusive content, and insider insights delivered directly to your inbox. Stay informed and inspired – subscribe now!</p>
@@ -35,7 +35,7 @@ const NewsLetter = () => {
                 <img className='w-[80%] h-full' src={NewsLetterImg} alt="" />
             </div> */}
             <div className='w-1/2 flex justify-center'>
-                <div className='relative h-[180px] w-[180px]'>
+                <div className='relative h-20 w-20 lg:h-[180px] lg:w-[180px]'>
                     <motion.div animate={{
                         scale: [1, 2, 2, 1, 1],
                         rotate: [0, 0, 180, 180, 0],
