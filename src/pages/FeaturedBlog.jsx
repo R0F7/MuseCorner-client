@@ -72,7 +72,7 @@ const FeaturedBlog = () => {
     }
 
     return (
-        <div className='pt-4 min-h-[100vh-350px] bg-gra-900 my-12'>
+        <div className='pt-4 min-h-[100vh-350px] bg-gra-900 mb-6 lg:my-12'>
             <div className='p-2 w-full lg:max-w-7xl mx-auto text-white fill-gray-400'>
                 <table className="border border-gray-700 w-full text-left">
                     <thead className="bg-indigo-60 bg-[#14456A]">

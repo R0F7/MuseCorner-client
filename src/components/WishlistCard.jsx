@@ -11,14 +11,14 @@ const WishlistCard = ({ blog, handleRemove }) => {
     return (
         <div>
             <div className="flex flex-col items-center justify-center w-full  mx-auto">
-                <div className="w-full h-64 shadow-md">
+                <div className="w-full h-64 shadow-md rounded-b-lg">
                     <img className="h-full w-full rounded-b-lg" src={image} alt="" />
                 </div>
 
-                <div className="w-56 -mt-10 overflow-hidden bg-white rounded-lg shadow-lg md:w-[95%] dark:bg-gray-800">
+                <div className="-mt-10 overflow-hidden bg-white rounded-lg shadow-lg w-[95%] dark:bg-gray-800">
                     <h3 className="py-2 font-bold tracking-wide text-center text-gray-800 uppercase dark:text-white">{title}</h3>
 
-                    <div className="px-3 pt-2 pb-3.5 bg-gray-200 dark:bg-gray-700">
+                    <div className="px-3 pt-2 pb-3.5 rounded-t-2xl bg-gray-100 dark:bg-gray-700 border-t">
                         <div className="h-[100px]">
                             <span className="font-bold text-gray-800 dark:text-gray-200">{category}</span>
                             <p>{short_description}</p>

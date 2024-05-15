@@ -93,18 +93,18 @@ const BlogCard = ({ blog }) => {
     return (
         <div>
             <div className="w-full overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
-                <img className="object-cover object-center w-full h-56" src={image} alt="avatar" />
+                <img className="object-cover object-center w-full h-44 md:h-56" src={image} alt="avatar" />
 
-                <div className="flex items-center px-6 py-3 bg-gray-900">
+                <div className="flex items-center px-6 py-3 bg-[#14456A]">
                     <h1 className="md:mx-3 text-lg font-semibold text-white">{category}</h1>
                 </div>
 
                 <div className="px-6 py-4">
-                    <h1 className="text-xl font-semibold text-gray-800 dark:text-white">{title}</h1>
+                    <h1 className="text-lg md:text-xl font-semibold text-gray-800 dark:text-white">{title}</h1>
                     <p className="py-2 text-gray-700 dark:text-gray-400 min-h-[100px] md:min-h-[65px]">{short_description}</p>
                     <div className="flex gap-4 pt-3 pb-2">
-                        <button onClick={handleWishList} className="btn btn-sm">Wishlist</button>
-                        <Link to={`/details/${_id}`} className="btn btn-sm">Details</Link>
+                        <button onClick={handleWishList} className="btn btn-sm bg-[#14456A] text-white hover:text-[#14456A] hover:bg-transparent">Wishlist</button>
+                        <Link to={`/details/${_id}`} className="btn btn-sm bg-transparent border-[#14456A] text-[#14456A] hover:text-white hover:bg-[#14456A]">Details</Link>
                         {/* <p>{date}</p> */}
                     </div>
                 </div>
