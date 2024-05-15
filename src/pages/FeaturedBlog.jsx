@@ -1,7 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import { createColumnHelper, getCoreRowModel, useReactTable, flexRender } from "@tanstack/react-table";
+import { createColumnHelper, getCoreRowModel, useReactTable, flexRender, getPaginationRowModel } from "@tanstack/react-table";
+
 import axios from "axios";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 // import { useLoaderData } from "react-router-dom";
 
 const FeaturedBlog = () => {
@@ -15,6 +16,16 @@ const FeaturedBlog = () => {
         },
     })
 
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        const copiedData = [...USERS];
+        const sortedData = copiedData.sort((a, b) => b.long_description.length - a.long_description.length);
+        setData(sortedData); //
+        // setData(copiedData)
+    }, [USERS]);
+
+    const [sortBy, setSortBy] = useState({});
     const columnHelper = createColumnHelper()
 
     const columns = [
@@ -43,28 +54,45 @@ const FeaturedBlog = () => {
         }),
     ]
 
-    // () => [...USERS]
-    // const [data , setData] = useState(USERS)
-    // const sorting_data = data.sort((a,b) => b.long_description.length - a.long_description.length);
-    // setData(sorting_data.slice(0,10));
+    const sortedData = React.useMemo(() => {
+        if (!sortBy.columnId) {
+            return data;
+        }
 
-    const [data, setData] = useState([]);
+        const sorted = [...data].slice(0, 10).sort((a, b) => {
+            const aValue = a[sortBy.columnId]
+            const bValue = b[sortBy.columnId]
 
-    useEffect(() => {
-        const copiedData = [...USERS];
-        const sortedData = copiedData.sort((a, b) => b.long_description.length - a.long_description.length);
-        setData(sortedData.slice(0, 10));
-    }, [USERS]);
+            if (aValue === bValue) {
+                return 0;
+            }
 
+            return sortBy.desc ? (aValue > bValue ? -1 : 1) : (aValue > bValue ? 1 : -1);
+        });
 
-    const table = useReactTable({
-        data,
-        columns,
-        getCoreRowModel: getCoreRowModel()
-    })
+        return sorted;
+    }, [data, sortBy]);
+
+    const table = useReactTable(
+        {
+            data: sortedData,
+            columns,
+            getCoreRowModel: getCoreRowModel(),
+            getPaginationRowModel: getPaginationRowModel(),
+        }
+    );
+
+    const handleSort = (columnId) => {
+        setSortBy((prevSortBy) => ({
+            columnId,
+            desc: prevSortBy.columnId === columnId ? !prevSortBy.desc : false,
+        }));
+    };
+
+    // console.log(data);
 
     if (isPending) {
-        return <h3>pending</h3>
+        return <span>Pending...</span>
     }
 
     if (isError) {
@@ -81,8 +109,15 @@ const FeaturedBlog = () => {
                                 <tr key={headerGroup.id}>
                                     {
                                         headerGroup.headers.map((header) => (
-                                            <th key={header.id} className="capitalize px-3.5 py-2 lg:py-2.5">
+                                            <th
+                                                key={header.id}
+                                                onClick={() => handleSort(header.id)}
+                                                className="capitalize px-3.5 py-2 lg:py-2.5 cursor-pointer"
+                                            >
                                                 {flexRender(header.column.columnDef.header, header.getContext())}
+                                                {sortBy.columnId === header.id && (
+                                                    sortBy.desc ? ' 🔽' : ' 🔼'
+                                                )}
                                             </th>
                                         ))
                                     }
@@ -94,7 +129,10 @@ const FeaturedBlog = () => {
                         {
                             table.getRowModel().rows.length ? (
                                 table.getRowModel().rows.map((row, i) => (
-                                    <tr key={row.id} className={`${i % 2 === 0 ? 'text-gray-900 bg-gray-300' : 'bg-gray-800'}`}>
+                                    <tr
+                                        key={row.id}
+                                        className={`${i % 2 === 0 ? 'text-gray-900 bg-gray-300' : 'bg-gray-800'}`}
+                                    >
                                         {
                                             row.getVisibleCells().map((cell) => (
                                                 <td key={cell.id} className="px-3.5 py-2">
@@ -108,9 +146,64 @@ const FeaturedBlog = () => {
                         }
                     </tbody>
                 </table>
+
+                {/* Pagination and page size controls */}
+                {/* <div className="flex items-center justify-end text-black mt-2 gap-2">
+                    <button
+                        onClick={() => {
+                            table.previousPage()
+                        }}
+                        disabled={!table.getCanPreviousPage()}
+                        className="p-1 border border-gray-300 px-2 disabled:opacity-30">
+                        {"<"}
+                    </button>
+                    <button
+                        onClick={() => {
+                            table.nextPage()
+                        }}
+                        disabled={!table.getCanNextPage()}
+                        className="p-1 border border-gray-300 px-2 disabled:opacity-30">
+                        {">"}
+                    </button>
+                    <span className="flex items-center gap-1">
+                        <div>Page</div>
+                        <strong>{table.getState().pagination.pageIndex + 1} of{" "}
+                            {table.getPageCount()}
+                        </strong>
+                    </span>
+                    <span className="flex items-center gap-1">
+                        | Go to page:
+                        <input type="number"
+                            defaultValue={table.getState().pagination.pageIndex + 1}
+                            onChange={(e) => {
+                                const page = e.target.value ? Number(e.target.value) - 1 : 0;
+                                table.setPageIndex(page)
+                            }}
+                            className="border p-1 rounded w-16 bg-transparent"
+                        />
+                    </span>
+
+                    <select
+                        value={table.getState().pagination.pageSize}
+                        onChange={(e) => {
+                            table.setPageSize(Number(e.target.value));
+                        }}
+                        className="h-9 text-xs bg-transparent"
+                    >
+                        {
+                            [10, 20, 30, 50].map((pageSize) => (
+
+                                <option key={pageSize} value={pageSize}>{pageSize}</option>
+
+                            ))
+                        }
+                    </select>
+                </div> */}
+
             </div>
         </div>
     );
+
 };
 
 export default FeaturedBlog;

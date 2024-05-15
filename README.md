@@ -1,8 +1,29 @@
-# React + Vite
+# MuseCorner
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+---
+## Assignment_category_0006
+## Live site:
+- [MuseCorner](https://blog-website-497d3.web.app/)
 
-Currently, two official plugins are available:
+---
+## Resources:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [fire base](https://firebase.google.com/)
+- [React Router Dom](https://reactrouter.com/)
+- [TailwindCSS](https://tailwindcss.com/)
+- [Daisy UI](https://daisyui.com/)
+- [MerakiUI](https://merakiui.com/)
+- [React-Icons](https://react-icons.github.io/react-icons/search/#q=twi)
+- [React Hot Toast](https://react-hot-toast.com/)
+- [MongoDB](https://mongodb.com/atlas)
+- [Lottie React](https://app.lottiefiles.com/)
+
+## challenges task
+
+- [Tanstack-Table](https://jwt.io/)
+- [JWT](https://jwt.io/)
+- [Framer Motion](https://www.framer.com/motion/)
+- [React Awesome reveal](https://app.lottiefiles.com/)
+
+## Component library (suggest)
+- [flowbite react](https://flowbite-react.com/)

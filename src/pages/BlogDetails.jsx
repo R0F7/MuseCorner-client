@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { IoIosSend } from "react-icons/io";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -15,6 +15,7 @@ const BlogDetails = () => {
     const { user } = useAuth()
     // const [comments, setComments] = useState([]);
     const [count, setCount] = useState(0);
+    const navigate = useNavigate();
 
     const { isPending1, isError1, error1, refetch1, data: blog = {} } = useQuery({
         queryKey: ['detailsBlog'],
@@ -80,13 +81,18 @@ const BlogDetails = () => {
         const blogId = _id;
         const commentInfo = { blogId, comment, user_name, user_image }
 
+        if (!user) {
+            toast.error('Login please')
+            return navigate('/login')
+        }
+
         if (user_email === user.email) {
             return toast.error('cannot comment your own blog')
         }
 
         axios.post(`${import.meta.env.VITE_API_URL}/comments`, commentInfo)
-            .then((res) => {
-                console.log(res);
+            .then(() => {
+                // console.log(res);
                 toast.success('comment send successful')
                 setCount(count + 1)
                 form.reset();
@@ -134,7 +140,7 @@ const BlogDetails = () => {
                         <div>
                             <h4 className="text-[red] text-sm font-medium">can not comment on own blog</h4>
                             {
-                                updatedAt ? <p>last Update: {updateDate}</p> : ''
+                                updatedAt ? <p><span className="text-[#14456A] font-semibold">Last Update:</span> {updateDate}</p> : ''
                             }
                             <Link to={`/update/${_id}`} className="bg-[#14456A] text-white text-sm md:w-[492px] h-[33px] md:h-[40px] flex justify-center items-center md:text-lg font-bold mt-2.5 rounded-sm hover:bg-white hover:text-[#14456A] hover:border hover:duration-1000 focus:outline-none focus:bg-[#14456A] focus:text-white">
                                 update

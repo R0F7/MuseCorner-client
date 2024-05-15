@@ -37,7 +37,7 @@ const Register = () => {
             toast.success('Registration Successful')
             navigate(location?.state ? location.state : '/')
         } catch (error) {
-            console.log(error);
+            // console.log(error);
             toast.error(error.message.split('/')[1].replace(').', ''))
         }
     }

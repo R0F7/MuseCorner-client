@@ -56,7 +56,7 @@ const AuthProvider = ({ children }) => {
       const loggedInUser = { email: userEmail };
 
       setUser(currentUser)
-      console.log('CurrentUser-->', currentUser)
+      // console.log('CurrentUser-->', currentUser)
       setLoading(false)
 
       if (currentUser) {
@@ -66,8 +66,8 @@ const AuthProvider = ({ children }) => {
           })
       }else {
         axios.post(`${import.meta.env.VITE_API_URL}/logout`, loggedInUser, { withCredentials: true })
-            .then(res => {
-                console.log(res.data);
+            .then(() => {
+                // console.log(res.data);
             })
     }
 

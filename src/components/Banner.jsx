@@ -16,13 +16,13 @@ const Banner = () => {
 
                     <div className="flex flex-col mt-6 space-y-3 lg:space-y-0 lg:flex-row">
 
-                        <div className="flex items-center bg-gray-100 md:w-[490px] justify-between px-3 py-3 rounded-full shadow-lg">
+                        {user && <div className="flex items-center bg-gray-100 md:w-[490px] justify-between px-3 py-3 rounded-full shadow-lg">
                             <div className="ml-3 md:ml-6">
                                 <h6 className="text-xs md:text-sm">Your email address</h6>
                                 <h4 className="font-bold text-sm md:text-lg">{user?.email}</h4>
                             </div>
                             <a href='#recent-blog' className="bg-[#14456A] text-white py-2.5 px-3 md:py-3.5 md:px-6 rounded-full font-bold">Get Started</a>
-                        </div>
+                        </div>}
                     </div>
                 </div>
                 {/* <div className="absolute -left-[230px] -bottom-[34px] -rotate-12">

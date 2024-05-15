@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+// import { useLoaderData } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import WishlistCard from "../components/WishlistCard";
 import toast from "react-hot-toast";
@@ -57,14 +57,14 @@ const Wishlist = () => {
     }, [blogs, wishlistInfo]);
 
     if (isPending) {
-        return <h3>pending</h3>
+        return <h3>pending...</h3>
     }
 
     if (isError) {
         return <span>{error.message}</span>
     }
     if (isPending1) {
-        return <h3>pending</h3>
+        return <h3>pending...</h3>
     }
 
     if (isError1) {
@@ -90,6 +90,12 @@ const Wishlist = () => {
                 console.log(error);
             })
     }
+
+    // if (wishlistBlogs.length < 0) {
+    //     <div className="min-h-[calc(100vh-350px)]">
+
+    //     </div>
+    // }
 
     return (
         <div className="min-h-[calc(100vh-350px)]">

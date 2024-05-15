@@ -6,11 +6,11 @@ const Navbar = () => {
     const { user, logOut } = useAuth();
 
     const navItems = <>
-        <li><NavLink to='/' className={({ isActive }) => isActive ? 'border border-[#14456A] border-y-0 bg-transparent py-1.5 px-3 text-[#14456A] font-semibold rounded-lg' : 'text-[rgba(20,69,106,.8)] font-medium'}>Home</NavLink></li>
-        <li><NavLink to='/add-blog' className={({ isActive }) => isActive ? 'border border-[#14456A] border-y-0 bg-transparent py-1.5 px-3 text-[#14456A] font-semibold rounded-lg' : 'text-[rgba(20,69,106,.8)] font-medium'}>Add Blog</NavLink></li>
-        <li><NavLink to='/all-blogs' className={({ isActive }) => isActive ? 'border border-[#14456A] border-y-0 bg-transparent py-1.5 px-3 text-[#14456A] font-semibold rounded-lg' : 'text-[rgba(20,69,106,.8)] font-medium'}>All blogs</NavLink></li>
-        <li><NavLink to='/featured-blogs' className={({ isActive }) => isActive ? 'border border-[#14456A] border-y-0 bg-transparent py-1.5 px-3 text-[#14456A] font-semibold rounded-lg' : 'text-[rgba(20,69,106,.8)] font-medium'}>Featured Blogs</NavLink></li>
-        <li><NavLink to='/wishlist' className={({ isActive }) => isActive ? 'border border-[#14456A] border-y-0 bg-transparent py-1.5 px-3 text-[#14456A] font-semibold rounded-lg' : 'text-[rgba(20,69,106,.8)] font-medium'}>Wishlist</NavLink></li>
+        <li><NavLink to='/' className={({ isActive }) => isActive ? 'border border-[#14456A] border-y-0 bg-transparent py-1.5 px-3 text-[rgb(17,136,188)] font-semibold rounded-lg' : 'text-[rgba(20,69,106,.8)] font-medium'}>Home</NavLink></li>
+        <li><NavLink to='/add-blog' className={({ isActive }) => isActive ? 'border border-[#14456A] border-y-0 bg-transparent py-1.5 px-3 text-[rgb(17,136,188)] font-semibold rounded-lg' : 'text-[rgba(20,69,106,.8)] font-medium'}>Add Blog</NavLink></li>
+        <li><NavLink to='/all-blogs' className={({ isActive }) => isActive ? 'border border-[#14456A] border-y-0 bg-transparent py-1.5 px-3 text-[rgb(17,136,188)] font-semibold rounded-lg' : 'text-[rgba(20,69,106,.8)] font-medium'}>All blogs</NavLink></li>
+        <li><NavLink to='/featured-blogs' className={({ isActive }) => isActive ? 'border border-[#14456A] border-y-0 bg-transparent py-1.5 px-3 text-[rgb(17,136,188)] font-semibold rounded-lg' : 'text-[rgba(20,69,106,.8)] font-medium'}>Featured Blogs</NavLink></li>
+        <li><NavLink to='/wishlist' className={({ isActive }) => isActive ? 'border border-[#14456A] border-y-0 bg-transparent py-1.5 px-3 text-[rgb(17,136,188)] font-semibold rounded-lg' : 'text-[rgba(20,69,106,.8)] font-medium'}>Wishlist</NavLink></li>
     </>
 
     const handleLogOut = async () => {
@@ -22,7 +22,7 @@ const Navbar = () => {
     }
 
     return (
-        <div className="navbar bg-base-100 my-4 border-b px-0">
+        <div className="navbar bg-base-100 md:my-4 border-b px-0">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -32,7 +32,10 @@ const Navbar = () => {
                         {navItems}
                     </ul>
                 </div>
-                <p className="text-xl font-bold text-[rgb(20,69,106)]">MuseCorner</p>
+                <div className='flex items-center gap-2'>
+                    <img className='w-9 hidden lg:grid' src="https://i.ibb.co/rZsdjJJ/logo2-removebg-preview.png" alt="" />
+                <p className="text-xl font-bold text-[rgb(20,69,106)]">Muse<span className='text-[rgb(17,136,188)]'>Corner</span></p>
+                </div>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="flex space-x-6 px-1">
@@ -46,11 +49,11 @@ const Navbar = () => {
                             <img alt="Tailwind CSS Navbar component" referrerPolicy='no-referrer' src={user?.photoURL} />
                         </Tooltip>
                     </div>
-                    <button className='btn' onClick={handleLogOut}>Logout</button>
+                    <button className='btn bg-[#14456A] text-white hover:bg-transparent duration-500 hover:text-[#14456A]' onClick={handleLogOut}>Logout</button>
                 </div>}
                 {!user && <div className='space-x-2'>
-                    <Link to='/login' className="btn text-[#14456A] bg-transparent hover:bg-[#14456A] duration-1000 hover:text-white">Login</Link>
-                    <Link to='/register' className="btn bg-[#14456A] text-white hover:bg-transparent duration-1000 hover:text-[#14456A]">Register</Link>
+                    <Link to='/login' className="btn bg-[rgb(17,136,188)] text-white hover:bg-transparent duration-1000 hover:text-[rgb(17,136,188)]">Login</Link>
+                    <Link to='/register' className="btn bg-[#14456A] text-white hover:bg-transparent duration-500 hover:text-[#14456A]">Register</Link>
                 </div>}
             </div>
         </div>

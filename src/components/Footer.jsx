@@ -1,7 +1,7 @@
-"use client";
 
 import { Footer } from "flowbite-react";
 import { BsDribbble, BsFacebook, BsGithub, BsInstagram, BsTwitter } from "react-icons/bs";
+// import logo from '../../public/image/logo2.jpg';
 
 const Footer1 = () => {
 
@@ -11,9 +11,9 @@ const Footer1 = () => {
                 <div className="grid w-full justify-between sm:flex sm:justify-between md:flex md:grid-cols-1">
                     <div>
                         <Footer.Brand
-                            href="https://flowbite.com"
-                            src="https://flowbite.com/docs/images/logo.svg"
-                            alt="Flowbite Logo"
+                            href="#"
+                            src="https://i.ibb.co/rZsdjJJ/logo2-removebg-preview.png"
+                            alt="MuseCorner Logo"
                             name="MuseCorner"
                         />
                     </div>
@@ -21,15 +21,15 @@ const Footer1 = () => {
                         <div>
                             <Footer.Title title="about" />
                             <Footer.LinkGroup col>
-                                <Footer.Link href="#">Flowbite</Footer.Link>
-                                <Footer.Link href="#">Tailwind CSS</Footer.Link>
+                                <Footer.Link href="#">Our Story</Footer.Link>
+                                <Footer.Link href="#">Meet the Team</Footer.Link>
                             </Footer.LinkGroup>
                         </div>
                         <div>
                             <Footer.Title title="Follow us" />
                             <Footer.LinkGroup col>
-                                <Footer.Link href="#">Github</Footer.Link>
-                                <Footer.Link href="#">Discord</Footer.Link>
+                                <Footer.Link href="#">X</Footer.Link>
+                                <Footer.Link href="#">Facebook</Footer.Link>
                             </Footer.LinkGroup>
                         </div>
                         <div>
@@ -43,7 +43,7 @@ const Footer1 = () => {
                 </div>
                 <Footer.Divider />
                 <div className="w-full sm:flex sm:items-center sm:justify-between">
-                    <Footer.Copyright href="#" by="Flowbite™" year={2022} />
+                    <Footer.Copyright href="#" by="MuseCorner™" year={2022} />
                     <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
                         <Footer.Icon href="#" icon={BsFacebook} />
                         <Footer.Icon href="#" icon={BsInstagram} />
