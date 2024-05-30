@@ -3,6 +3,9 @@ import { createColumnHelper, getCoreRowModel, useReactTable, flexRender, getPagi
 
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+
+import { PhotoView } from 'react-photo-view';
+import 'react-photo-view/dist/react-photo-view.css';
 // import { useLoaderData } from "react-router-dom";
 
 const FeaturedBlog = () => {
@@ -38,7 +41,9 @@ const FeaturedBlog = () => {
 
         columnHelper.accessor("user_image", {
             cell: (info) => (
-                <img src={info.getValue()} alt="" className="rounded-full w-10 h-10 object-cover" />
+                <PhotoView src={info.getValue()}>
+                    <img src={info.getValue()} alt="" className="rounded-full w-10 h-10 object-cover" />
+                </PhotoView>
             ),
             header: "Profile"
         }),

@@ -6,6 +6,8 @@ import toast from "react-hot-toast";
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 // import useAxiosSecure from "../hooks/useAxiosSecure";
+import { PhotoView } from 'react-photo-view';
+import 'react-photo-view/dist/react-photo-view.css';
 
 const BlogCard = ({ blog }) => {
     const { user } = useAuth();
@@ -93,7 +95,12 @@ const BlogCard = ({ blog }) => {
     return (
         <div>
             <div className="w-full overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
-                <img className="object-cover object-center w-full h-44 md:h-56" src={image} alt="avatar" />
+                {/* <img className="object-cover object-center w-full h-44 md:h-56" src={image} alt="avatar" /> */}
+
+                    <PhotoView src={image}>
+                        <img className="object-cover object-center w-full h-44 md:h-56" src={image} alt="avatar" />
+                    </PhotoView>
+
 
                 <div className="flex items-center px-6 py-3 bg-[#14456A]">
                     <h1 className="md:mx-3 text-lg font-semibold text-white">{category}</h1>

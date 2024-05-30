@@ -8,6 +8,9 @@ import Comment from "../components/Comment";
 // import useAxiosSecure from "../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 
+import { PhotoView } from 'react-photo-view';
+import 'react-photo-view/dist/react-photo-view.css';
+
 const BlogDetails = () => {
     // const blog = useLoaderData();
 
@@ -106,7 +109,9 @@ const BlogDetails = () => {
         <div className="md:w-[80%] mx-auto mb-10">
             <div >
                 <div className="relative ">
+                    <PhotoView src={image}>
                     <img className="w-full h-64 rounded-lg md:h-[280px] lg:h-[450px]" src={image} alt="" />
+                    </PhotoView>
 
                     <div className="absolute bottom-0 flex p-3 bg-white dark:bg-gray-900 ">
                         <img className="object-cover object-center w-10 h-10 rounded-full" src={user_image} alt="" />
