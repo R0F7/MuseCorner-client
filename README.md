@@ -3,7 +3,7 @@
 ---
 ## Assignment_category_0006
 ## Live site:
-- [MuseCorner](https://blog-website-497d3.web.app/)
+- [MuseCorner](https://musecorner.netlify.app)
 
 ---
 ## Resources:
